@@ -1,6 +1,7 @@
 const express = require('express');
 const Anthropic = require('@anthropic-ai/sdk');
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+const UNLOCK_CODE = process.env.UNLOCK_CODE || 'itdoc-unlock-2026';
 const path = require('path');
 require('dotenv').config();
 
@@ -27,7 +28,7 @@ app.post('/create-checkout', async (req, res) => {
         },
       ],
       mode: 'subscription',
-      success_url: `${req.headers.origin}/success.html`,
+      success_url: `${req.headers.origin}/success.html?code=${UNLOCK_CODE}`,
       cancel_url: `${req.headers.origin}/`,
     });
     res.json({ url: session.url });

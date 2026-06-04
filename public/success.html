@@ -21,7 +21,15 @@
   <div class="icon">🎉</div>
   <h1>Welcome to <span>ITDoc</span> Generator!</h1>
   <p>Your subscription is active. You now have unlimited access to generate professional IT documentation instantly.</p>
-  <a href="/">Start Generating Docs →</a>
+  <a href="/" id="startLink">Start Generating Docs →</a>
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const code = params.get('code');
+  if (code) {
+    localStorage.setItem('itdoc_access', code);
+    document.getElementById('startLink').href = '/';
+  }
+</script>
 </div>
 </body>
 </html>

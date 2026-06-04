@@ -199,6 +199,21 @@ function selectType(el, type) {
 }
 
 async function generate() {
+  const accessCode = localStorage.getItem('itdoc_access');
+  const usageCount = parseInt(localStorage.getItem('itdoc_usage') || '0');
+  const UNLOCK_CODE = 'itdoc-unlock-2026';
+  const isPaid = accessCode === UNLOCK_CODE;
+
+  if (!isPaid && usageCount >= 3) {
+    document.getElementById('pricing').scrollIntoView({behavior: 'smooth'});
+    alert('You have used your 3 free documents this month. Upgrade to get unlimited access!');
+    return;
+  }
+
+  if (!isPaid) {
+    localStorage.setItem('itdoc_usage', usageCount + 1);
+  }
+
   const input = document.getElementById('userInput').value.trim();
   const btn = document.getElementById('genBtn');
   const outputCard = document.getElementById('outputCard');
