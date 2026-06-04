@@ -101,6 +101,27 @@
   .faq-item { border-top: 1px solid var(--border); padding: 1.25rem 0; }
   .faq-q { font-size: 15px; font-weight: 600; margin-bottom: 8px; cursor: pointer; }
   .faq-a { font-size: 14px; color: var(--text2); line-height: 1.7; }
+  .how-it-works { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 3rem 1.5rem; margin-bottom: 0; }
+  .hiw-inner { max-width: 860px; margin: 0 auto; text-align: center; }
+  .hiw-inner h2 { font-size: 26px; font-weight: 700; margin-bottom: 8px; }
+  .hiw-sub { color: var(--text2); font-size: 15px; margin-bottom: 2.5rem; }
+  .hiw-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2rem; }
+  .hiw-step { text-align: center; padding: 1.5rem; }
+  .hiw-number { width: 32px; height: 32px; background: var(--accent); color: #000; border-radius: 50%; font-weight: 800; font-size: 14px; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px; }
+  .hiw-icon { font-size: 32px; margin-bottom: 12px; }
+  .hiw-title { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+  .hiw-desc { font-size: 14px; color: var(--text2); line-height: 1.6; }
+  .social-proof { background: var(--accent); padding: 14px 1.5rem; }
+  .sp-inner { max-width: 860px; margin: 0 auto; display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap; }
+  .sp-item { font-size: 13px; font-weight: 600; color: #000; }
+  .sp-divider { color: #00000040; font-weight: 700; }
+  .sample-section { max-width: 860px; margin: 0 auto; padding: 3rem 1.5rem; }
+  .sample-inner h2 { font-size: 26px; font-weight: 700; margin-bottom: 8px; text-align: center; }
+  .sample-inner .hiw-sub { text-align: center; margin-bottom: 2rem; }
+  .sample-prompt { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.25rem; margin-bottom: 12px; }
+  .sample-output { background: var(--surface); border: 1px solid var(--accent); border-radius: var(--radius); padding: 1.25rem; }
+  .sample-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.07em; color: var(--text3); margin-bottom: 10px; }
+  .sample-text { font-size: 13px; line-height: 1.7; color: var(--text2); white-space: pre-wrap; }
 </style>
 </head>
 <body>
@@ -120,7 +141,101 @@
     <div class="badge"><span>✓</span> Onboarding Guides</div>
   </div>
 </div>
+<div class="how-it-works">
+  <div class="hiw-inner">
+    <h2>How it works</h2>
+    <p class="hiw-sub">Three steps to professional IT documentation</p>
+    <div class="hiw-steps">
+      <div class="hiw-step">
+        <div class="hiw-number">1</div>
+        <div class="hiw-icon">✍️</div>
+        <div class="hiw-title">Describe your setup</div>
+        <div class="hiw-desc">Paste in your notes, configs, or just describe your IT process in plain English. No special formatting needed.</div>
+      </div>
+      <div class="hiw-step">
+        <div class="hiw-number">2</div>
+        <div class="hiw-icon">⚡</div>
+        <div class="hiw-title">AI writes the doc</div>
+        <div class="hiw-desc">Our AI instantly generates a fully formatted professional document with headings, tables, and step-by-step procedures.</div>
+      </div>
+      <div class="hiw-step">
+        <div class="hiw-number">3</div>
+        <div class="hiw-icon">📋</div>
+        <div class="hiw-title">Copy and use it</div>
+        <div class="hiw-desc">Copy your document or download it as a text file. Paste it into Word, Notion, Google Docs, or your ticketing system.</div>
+      </div>
+    </div>
+  </div>
+</div>
 
+<div class="social-proof">
+  <div class="sp-inner">
+    <div class="sp-item">⏱ Saves 2-3 hours per document</div>
+    <div class="sp-divider">•</div>
+    <div class="sp-item">🤖 Powered by Claude AI</div>
+    <div class="sp-divider">•</div>
+    <div class="sp-item">✅ Used by sysadmins & MSPs</div>
+    <div class="sp-divider">•</div>
+    <div class="sp-item">🔒 Your data is never stored</div>
+  </div>
+</div>
+
+<div class="sample-section">
+  <div class="sample-inner">
+    <h2>See what it generates</h2>
+    <p class="hiw-sub">Real output from a real prompt — no editing done</p>
+    <div class="sample-prompt">
+      <div class="sample-label">Input</div>
+      <div class="sample-text">We have a Windows Server 2022 domain controller. When a new employee joins we need to create their AD account, set up Office 365 email, install standard software and walk them through first login.</div>
+    </div>
+    <div class="sample-output">
+      <div class="sample-label">Generated document</div>
+      <div class="sample-text">
+# IT Onboarding Guide — New Employee Setup
+
+## Overview
+This guide covers the complete onboarding process for new employees including Active Directory setup, Office 365 configuration, and workstation preparation.
+
+## Prerequisites
+- Domain Administrator credentials
+- Office 365 admin access
+- Standard software installer package
+
+## Step 1 — Create Active Directory Account
+1. Open Active Directory Users and Computers
+2. Navigate to the appropriate OU for new users
+3. Right-click and select New → User
+4. Enter first name, last name, and username (firstname.lastname)
+5. Set temporary password and require change at next login
+6. Add user to standard security groups: Domain Users, VPN-Users, Office365-Licensed
+
+## Step 2 — Configure Office 365 Email
+1. Log into Microsoft 365 Admin Center
+2. Go to Users → Active Users → Add User
+3. Assign E3 or appropriate license
+4. Set primary email address to match AD username
+5. Add to relevant distribution groups
+
+## Step 3 — Workstation Setup
+1. Join workstation to domain
+2. Install standard software package
+3. Configure VPN client with user credentials
+4. Set up antivirus and confirm definition update
+
+## Step 4 — First Login Walkthrough
+1. Have user log in with temporary password
+2. Guide through password change requirements
+3. Confirm email access in Outlook
+4. Test VPN connection
+5. Provide IT support contact information
+
+## Notes
+- IT Support: 555-1234
+- All setup must be completed before employee start date
+      </div>
+    </div>
+  </div>
+</div>
 <div class="app">
   <div class="card">
     <h2>Select document type</h2>
