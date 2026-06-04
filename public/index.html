@@ -279,10 +279,10 @@ async function subscribe() {
     if (data.url) {
       window.location.href = data.url;
     } else {
-      alert('Something went wrong. Please try again.');
+      alert('Error: ' + JSON.stringify(data));
     }
   } catch(err) {
-    alert('Something went wrong. Please try again.');
+    alert('Fetch error: ' + err.message);
   }
 }
 }
