@@ -269,8 +269,22 @@ function downloadDoc() {
   a.click();
 }
 
-function subscribe() {
-  alert('Payment coming soon! Stripe integration in progress.');
+async function subscribe() {
+  try {
+    const res = await fetch('/create-checkout', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' }
+    });
+    const data = await res.json();
+    if (data.url) {
+      window.location.href = data.url;
+    } else {
+      alert('Something went wrong. Please try again.');
+    }
+  } catch(err) {
+    alert('Something went wrong. Please try again.');
+  }
+}
 }
 </script>
 </body>

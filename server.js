@@ -1,18 +1,40 @@
 const express = require('express');
 const Anthropic = require('@anthropic-ai/sdk');
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+const path = require('path');
 require('dotenv').config();
 
 const app = express();
 app.use(express.json());
-const path = require('path');
 app.use(express.static(path.join(__dirname, 'public')));
+
+const anthropic = new Anthropic({
+  apiKey: process.env.ANTHROPIC_API_KEY,
+});
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-const anthropic = new Anthropic({
-  apiKey: process.env.ANTHROPIC_API_KEY,
+app.post('/create-checkout', async (req, res) => {
+  try {
+    const session = await stripe.checkout.sessions.create({
+      payment_method_types: ['card'],
+      line_items: [
+        {
+          price: process.env.STRIPE_PRICE_ID,
+          quantity: 1,
+        },
+      ],
+      mode: 'subscription',
+      success_url: `${req.headers.origin}/success.html`,
+      cancel_url: `${req.headers.origin}/`,
+    });
+    res.json({ url: session.url });
+  } catch (error) {
+    console.error('Stripe error:', error);
+    res.status(500).json({ error: 'Failed to create checkout session.' });
+  }
 });
 
 app.post('/generate', async (req, res) => {
@@ -47,7 +69,4 @@ app.post('/generate', async (req, res) => {
   }
 });
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`IT Doc Generator running on http://localhost:${PORT}`);
-});
+const PORT = process.env.PORT
